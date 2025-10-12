@@ -1,0 +1,47 @@
+import { type VariantProps, cva } from 'class-variance-authority';
+import { cn } from '@/lib/utils';
+
+export const toggleVariants = cva(
+  'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors',
+  {
+    variants: {
+      variant: {
+        default: 'bg-transparent hover:bg-muted hover:text-muted-foreground',
+        outline: 'border border-input bg-transparent hover:bg-accent hover:text-accent-foreground',
+      },
+      size: {
+        default: 'h-10 px-3',
+        sm: 'h-9 px-2.5',
+        lg: 'h-11 px-5',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'default',
+    },
+  }
+);
+
+export type ToggleVariant = VariantProps<typeof toggleVariants>['variant'];
+export type ToggleSize = VariantProps<typeof toggleVariants>['size'];
+
+/**
+ * Get the class names for a toggle button
+ * @param variant The variant of the toggle
+ * @param size The size of the toggle
+ * @param className Additional class names to apply
+ * @returns The combined class names
+ */
+export function getToggleClasses(
+  variant: ToggleVariant = 'default',
+  size: ToggleSize = 'default',
+  className?: string
+) {
+  return cn(
+    toggleVariants({ variant, size }),
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+    'disabled:pointer-events-none disabled:opacity-50',
+    'data-[state=on]:bg-accent data-[state=on]:text-accent-foreground',
+    className
+  );
+}
