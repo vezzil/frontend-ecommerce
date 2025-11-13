@@ -4,7 +4,7 @@
       <h1 class="mb-4 text-4xl font-bold">404</h1>
       <p class="mb-4 text-xl text-gray-600">Oops! Page not found</p>
       <router-link to="/" class="text-blue-500 underline hover:text-blue-700">
-        Return to Home
+        Return to Homerageegraragerag
       </router-link>
     </div>
   </div>
